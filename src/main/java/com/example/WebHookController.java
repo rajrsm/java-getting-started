@@ -34,7 +34,7 @@ public class WebHookController {
 	}
 	
 	@GetMapping("getchallenge")
-	public ResponseEntity getName(){
+	public ResponseEntity getchallenge(){
 		return new ResponseEntity(m,HttpStatus.OK);
 	}
 
