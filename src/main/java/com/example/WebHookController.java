@@ -25,5 +25,10 @@ public class WebHookController {
 			return new ResponseEntity("NOT CHALLENGE_ACCEPTED",HttpStatus.FORBIDDEN);
 		}
 	}
+	
+	@GetMapping("getName")
+	public ResponseEntity getName(){
+		return new ResponseEntity("Ayush kumar",HttpStatus.OK);
+	}
 
 }
