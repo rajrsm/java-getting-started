@@ -10,14 +10,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("facebook")
 public class WebHookController {
-	
+	String m=null;
 	@GetMapping("webhook")
 	public ResponseEntity getVerifyToken(
 			@RequestParam("hub.verify_token") String token,
 			@RequestParam("hub.challenge") String challenge,
 			@RequestParam("hub.mode") String mode) {
+		
 		String ACCESS_TOKEN= "INNOEYE";
-		System.out.println("token"+token+" challenge "+challenge+" mode"+mode);
+		m=challenge;
+		//System.out.println("token"+token+" challenge "+challenge+" mode"+mode);
 		if(token!=null & ACCESS_TOKEN.equalsIgnoreCase(token)) {
 			return new ResponseEntity(challenge,HttpStatus.OK);
 		}
@@ -29,6 +31,11 @@ public class WebHookController {
 	@GetMapping("getName")
 	public ResponseEntity getName(){
 		return new ResponseEntity("Ayush kumar",HttpStatus.OK);
+	}
+	
+	@GetMapping("getchallenge")
+	public ResponseEntity getName(){
+		return new ResponseEntity(m,HttpStatus.OK);
 	}
 
 }
