@@ -21,11 +21,14 @@ public class WebHookController {
 		
 		String ACCESS_TOKEN= "INNOEYE";
 		m=challenge;
+		System.out.println("IN VERIFICATION");
 		//System.out.println("token"+token+" challenge "+challenge+" mode"+mode);
 		if(token!=null & ACCESS_TOKEN.equalsIgnoreCase(token)) {
+			System.out.println(" VERIFICATION  SUCCESS");
 			return new ResponseEntity(challenge,HttpStatus.OK);
 		}
 		else {
+			System.out.println(" VERIFICATION  UNSUCCESS ");
 			return new ResponseEntity("NOT CHALLENGE_ACCEPTED",HttpStatus.FORBIDDEN);
 		}
 	}
@@ -42,6 +45,8 @@ public class WebHookController {
 	
 	@PostMapping("webhook")
 	public ResponseEntity getVerifyToken(@RequestBody Object obj) {
+		
+		System.out.println(" getVerifyToken(-,-) ");
 		
 		System.out.println(obj.toString());
                return new ResponseEntity(obj,HttpStatus.OK);
