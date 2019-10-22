@@ -49,7 +49,7 @@ public class WebHookController {
 	}
 	
 	@PostMapping("webhook")
-	public ResponseEntity getVerifyToken(@RequestBody JSONObject obj) throws Exception {
+	public ResponseEntity getVerifyToken(@RequestBody Object obj) throws Exception {
 		
       System.out.println(" getVerifyToken(-,-) ");
       System.out.println(obj.toString());
@@ -65,7 +65,7 @@ public class WebHookController {
 		
 	}
 	
-	public static void demoPostRESTAPI(JSONObject obj) throws Exception{
+	public static void demoPostRESTAPI(Object obj) throws Exception{
 	    DefaultHttpClient httpClient = new DefaultHttpClient();
 	    try {
 	        HttpPost postRequest = new HttpPost("http://60.254.111.202:18091/printEventData");
