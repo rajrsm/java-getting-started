@@ -5,6 +5,8 @@ import java.util.Map;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
+import javax.print.attribute.standard.Media;
+import javax.ws.rs.Produces;
 
 import org.apache.commons.codec.binary.Base64;
 import org.json.JSONObject;
@@ -24,7 +26,8 @@ public class WebHookTwitterController {
 	
 	
 	@GetMapping("webhook")
-	public ResponseEntity getVerifyToken(
+	@Produces(value ="application/json")
+	public JSONObject getVerifyToken(
 			@RequestParam("crc_token") String token) {
 		System.out.println("inside methode token :  "+token);
 		try {
@@ -53,7 +56,7 @@ public class WebHookTwitterController {
 //		     {
 //		    	  "response_token": "sha256=x0mYd8hz2goCTfcNAaMqENy2BFgJJfJOb4PdvTffpwg="
 //		    	}
-		     return new ResponseEntity(json,httpHeaders,HttpStatus.OK);
+		     return json;
 		    }catch (Exception e) {
 		    	e.printStackTrace();
 		    	return null;
