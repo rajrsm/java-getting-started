@@ -23,6 +23,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+
 @RestController
 @RequestMapping("twitter")
 public class WebHookTwitterController {
@@ -75,6 +78,13 @@ public class WebHookTwitterController {
       System.out.println(obj.toString());
 		
 		try{
+			
+			Gson gson = new Gson(); 
+			System.out.println("gson.toJson(obj : "+ gson.toJson(obj));
+	        String json = gson.toJson(obj); 
+	        JSONObject jjj=new JSONObject(json);
+	        System.out.println(jjj);
+	        System.out.println("for_user_id : "+ jjj.get("for_user_id"));
 			//demoPostRESTAPI(obj);
 			
 	               return new ResponseEntity(obj,HttpStatus.OK);
