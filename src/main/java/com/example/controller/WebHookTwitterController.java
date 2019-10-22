@@ -20,7 +20,7 @@ public class WebHookTwitterController {
 	
 	
 	@GetMapping("webhook")
-	public JSONObject getVerifyToken(
+	public String getVerifyToken(
 			@RequestParam("crc_token") String token) {
 		System.out.println("inside methode token :  "+token);
 		try {
@@ -44,7 +44,7 @@ public class WebHookTwitterController {
 //		     {
 //		    	  "response_token": "sha256=x0mYd8hz2goCTfcNAaMqENy2BFgJJfJOb4PdvTffpwg="
 //		    	}
-		     return json;
+		     return "{\"response_token\": \"sha256="+hash+"\"}";
 		    }catch (Exception e) {
 		    	e.printStackTrace();
 		    	return null;
