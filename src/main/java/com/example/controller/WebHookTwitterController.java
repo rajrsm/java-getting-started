@@ -11,6 +11,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.commons.codec.binary.Base64;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -85,6 +86,12 @@ public class WebHookTwitterController {
 	        JSONObject jjj=new JSONObject(json);
 	        System.out.println(jjj);
 	        System.out.println("for_user_id : "+ jjj.get("for_user_id"));
+	        JSONArray aray=new JSONArray(  jjj.get("tweet_create_events"));
+	        for (int i = 0; i < aray.length(); i++) {
+	        	System.out.println("created_at : "+ aray.getJSONObject(i).get("created_at"));
+	        	System.out.println("created_at : "+ aray.getJSONObject(i).get("created_at"));
+				
+			}
 			//demoPostRESTAPI(obj);
 			
 	               return new ResponseEntity(obj,HttpStatus.OK);
