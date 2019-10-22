@@ -5,8 +5,11 @@ import java.util.Map;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
+
 import org.apache.commons.codec.binary.Base64;
-import org.json.JSONObject;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,6 +42,8 @@ public class WebHookTwitterController {
 		     reposne.put("response_token", "sha256="+hash);
 		     //Object json = new Object();
 		     //json.put("response_token","sha256=" +hash);
+		     HttpHeaders httpHeaders = new HttpHeaders();
+		     httpHeaders.setContentType(MediaType.APPLICATION_JSON);
 		     
 		     String reponse="\"{\"response_token\": \"sha256="+hash+"\"}\"";
 		     System.out.println("reponse  :  "+reposne);
@@ -46,7 +51,7 @@ public class WebHookTwitterController {
 //		     {
 //		    	  "response_token": "sha256=x0mYd8hz2goCTfcNAaMqENy2BFgJJfJOb4PdvTffpwg="
 //		    	}
-		     return new ResponseEntity(reponse,HttpStatus.OK);
+		     return new ResponseEntity(reponse,httpHeaders,HttpStatus.OK);
 		    }catch (Exception e) {
 		    	e.printStackTrace();
 		    	return null;
