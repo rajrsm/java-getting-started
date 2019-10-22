@@ -85,7 +85,7 @@ public class WebHookController {
 	    try {
 	        HttpPost postRequest = new HttpPost("http://60.254.111.202:18091/printEventData");
 	         
-	        postRequest.addHeader("content-type", "application/xml");
+	        postRequest.addHeader("content-type", "application/json");
 	        StringEntity params =new StringEntity(obj.toString());
 	        
 	        postRequest.setEntity(params);
