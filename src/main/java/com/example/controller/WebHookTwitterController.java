@@ -6,7 +6,7 @@ import java.util.Map;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 import org.apache.commons.codec.binary.Base64;
-
+import org.json.JSONObject;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +20,7 @@ public class WebHookTwitterController {
 	
 	
 	@GetMapping("webhook")
-	public ResponseEntity getVerifyToken(
+	public JSONObject getVerifyToken(
 			@RequestParam("crc_token") String token) {
 		System.out.println("inside methode token :  "+token);
 		try {
@@ -37,11 +37,15 @@ public class WebHookTwitterController {
 		     System.out.println("sha256=" + hash);
 		     Map<String, String> reposne=new HashMap<>();
 		     reposne.put("response_token", hash);
+		     JSONObject json = new JSONObject();
+		     
+		     json.append("response_token", hash);
+		     System.out.println("json :  "+json);
 //		     Twitter json response
 //		     {
 //		    	  "response_token": "sha256=x0mYd8hz2goCTfcNAaMqENy2BFgJJfJOb4PdvTffpwg="
 //		    	}
-		     return null;
+		     return json;
 		    }catch (Exception e) {
 		    	e.printStackTrace();
 		    	return null;
