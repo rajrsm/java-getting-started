@@ -22,10 +22,11 @@ public class WebHookTwitterController {
 	@GetMapping("webhook")
 	public ResponseEntity getVerifyToken(
 			@RequestParam("crc_token") String token) {
-		
+		System.out.println("inside methode token :  "+token);
 		try {
 		     String consumer_secret = "a8Y7Ef80voX2GfR7AvJjK0P4mo061ftSFtm2xsLrUTTzwXCZIO";
-		     String crc_token = "Message";
+		     System.out.println("token :  "+token);
+		     String crc_token = token;
 
 		     Mac sha256_HMAC = Mac.getInstance("HmacSHA256");
 		     SecretKeySpec secret_key = new SecretKeySpec(consumer_secret.getBytes("UTF-8"), "HmacSHA256");
