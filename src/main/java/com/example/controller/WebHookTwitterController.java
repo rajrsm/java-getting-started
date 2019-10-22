@@ -75,7 +75,7 @@ public class WebHookTwitterController {
       System.out.println(obj.toString());
 		
 		try{
-			demoPostRESTAPI(obj);
+			//demoPostRESTAPI(obj);
 			
 	               return new ResponseEntity(obj,HttpStatus.OK);
 		}catch(Exception e){
