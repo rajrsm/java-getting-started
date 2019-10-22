@@ -37,14 +37,16 @@ public class WebHookTwitterController {
 		     System.out.println("sha256=" + hash);
 		     Map<String, String> reposne=new HashMap<>();
 		     reposne.put("response_token", hash);
-		     JSONObject json = new JSONObject();
+		     Object json = new Object();
 		     json.put("response_token","sha256=" +hash);
-		     System.out.println("json :  "+json);
+		     
+		     String reponse="\"{\"response_token\": \"sha256="+hash+"\"}\"";
+		     System.out.println("reponse  :  "+reponse);
 //		     Twitter json response
 //		     {
 //		    	  "response_token": "sha256=x0mYd8hz2goCTfcNAaMqENy2BFgJJfJOb4PdvTffpwg="
 //		    	}
-		     return "{\"response_token\": \"sha256="+hash+"\"}";
+		     return reponse;
 		    }catch (Exception e) {
 		    	e.printStackTrace();
 		    	return null;
