@@ -83,15 +83,8 @@ public class WebHookTwitterController {
 			Gson gson = new Gson(); 
 			System.out.println("gson.toJson(obj : "+ gson.toJson(obj));
 	        String json = gson.toJson(obj); 
-	        JSONObject jjj=new JSONObject(json);
-	        System.out.println(jjj);
-	        System.out.println("for_user_id : "+ jjj.get("for_user_id"));
-	        JSONArray aray=new JSONArray(  jjj.get("tweet_create_events"));
-	        for (int i = 0; i < aray.length(); i++) {
-	        	System.out.println("created_at : "+ aray.getJSONObject(i).get("created_at"));
-	        	System.out.println("created_at : "+ aray.getJSONObject(i).get("created_at"));
-				
-			}
+	        JSONObject jsonObject  =new JSONObject(json);
+	        System.out.println("jsonObject : "+ jsonObject);
 			//demoPostRESTAPI(obj);
 			
 	               return new ResponseEntity(obj,HttpStatus.OK);
