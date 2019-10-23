@@ -85,7 +85,7 @@ public class WebHookTwitterController {
 	        String json = gson.toJson(obj); 
 	        JSONObject jsonObject  =new JSONObject(json);
 	        System.out.println("jsonObject : "+ jsonObject);
-			//demoPostRESTAPI(obj);
+			demoPostRESTAPI(obj);
 			
 	               return new ResponseEntity(obj,HttpStatus.OK);
 		}catch(Exception e){
@@ -95,22 +95,25 @@ public class WebHookTwitterController {
 		
 	}
 	
-	public static void demoPostRESTAPI(Object obj) throws Exception{
+	public static void demoPostRESTAPI(Map<Object,Object> obj) throws Exception{
 	    DefaultHttpClient httpClient = new DefaultHttpClient();
 	    try {
-	        HttpPost postRequest = new HttpPost("http://60.254.111.202:18091/printEventData");
+	        HttpPost postRequest = new HttpPost("http://60.254.111.202:28088/ticketManagement/unauthorize/pushFBData");
 	         
 	        postRequest.addHeader("content-type", "application/json");
-	        StringEntity params =new StringEntity(obj.toString());
-	        
+	       // StringEntity params =new StringEntity(obj.toString());
+	        Gson gson = new Gson(); 
+	        String json = gson.toJson(obj); 
+	        StringEntity params =new StringEntity(json);
 	        postRequest.setEntity(params);
 	          
 	        //Send the request; It will immediately return the response in HttpResponse object if any
 	        HttpResponse response = httpClient.execute(postRequest);
 	        int statusCode = response.getStatusLine().getStatusCode();
-	        if (statusCode != 201){
+	        if (statusCode != 200){
 	            throw new RuntimeException("Failed with HTTP error code : " + statusCode);
 	        }
+	        System.out.println("statusCode::"+statusCode);
 	    }
 	    finally{
 	        httpClient.getConnectionManager().shutdown();
