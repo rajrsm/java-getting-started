@@ -39,7 +39,7 @@ public class WebHookTwitterController {
 			@RequestParam("crc_token") String token) {
 		System.out.println("inside methode token :  "+token);
 		try {
-		     String consumer_secret = "H6hBy75bq1CO5CribSoO5pfzwIB2T9OXCz2Bd5AbStcgxlfT1o";
+		     String consumer_secret = "a8Y7Ef80voX2GfR7AvJjK0P4mo061ftSFtm2xsLrUTTzwXCZIO";
 		     System.out.println("token :  "+token);
 		     String crc_token = token;
 
