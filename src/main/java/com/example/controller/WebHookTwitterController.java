@@ -37,6 +37,7 @@ public class WebHookTwitterController {
 	@Produces(value ="application/json")
 	public Object getVerifyToken(
 			@RequestParam("crc_token") String token) {
+		
 		System.out.println("inside methode token :  "+token);
 		
 		try {
