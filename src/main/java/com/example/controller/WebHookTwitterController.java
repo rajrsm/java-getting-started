@@ -42,8 +42,6 @@ public class WebHookTwitterController {
 		     String consumer_secret = "H6hBy75bq1CO5CribSoO5pfzwIB2T9OXCz2Bd5AbStcgxlfT1o";
 		     System.out.println("token :  "+token);
 		     String crc_token = token;
-		     
-
 		     Mac sha256_HMAC = Mac.getInstance("HmacSHA256");
 		     SecretKeySpec secret_key = new SecretKeySpec(consumer_secret.getBytes("UTF-8"), "HmacSHA256");
 		     sha256_HMAC.init(secret_key);
