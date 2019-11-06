@@ -94,7 +94,7 @@ public class WebHookTwitterController {
 		
 	}
 	
-	public static void demoPostRESTAPI(Map<Object,Object> obj) throws Exception{
+	public static void demoPostRESTAPI(Object obj) throws Exception{
 	    DefaultHttpClient httpClient = new DefaultHttpClient();
 	    try {
 	        HttpPost postRequest = new HttpPost("http://60.254.111.202:28088/ticketManagement/unauthorize/pushFBData");
