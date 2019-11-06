@@ -38,6 +38,7 @@ public class WebHookTwitterController {
 	public Object getVerifyToken(
 			@RequestParam("crc_token") String token) {
 		System.out.println("inside methode token :  "+token);
+		
 		try {
 		     String consumer_secret = "H6hBy75bq1CO5CribSoO5pfzwIB2T9OXCz2Bd5AbStcgxlfT1o";
 		     System.out.println("token :  "+token);
