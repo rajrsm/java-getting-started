@@ -68,7 +68,7 @@ public class WebHookController {
 	public static void demoPostRESTAPI(Object obj) throws Exception{
 	    DefaultHttpClient httpClient = new DefaultHttpClient();
 	    try {
-	        HttpPost postRequest = new HttpPost("http://60.254.111.202:18091/printEventData");
+	        HttpPost postRequest = new HttpPost("http://60.254.111.202:18091/ticketManagement/unauthorize/pushFBDataMap");
 	         
 	        postRequest.addHeader("content-type", "application/json");
 	        StringEntity params =new StringEntity(obj.toString());
