@@ -99,7 +99,7 @@ public class WebHookTwitterController {
 	public static void demoPostRESTAPI(Object obj) throws Exception{
 	    DefaultHttpClient httpClient = new DefaultHttpClient();
 	    try {
-	        HttpPost postRequest = new HttpPost("http://60.254.111.202:28088/ticketManagement/unauthorize/pushTWData");
+	        HttpPost postRequest = new HttpPost("60.254.111.202:28445/twitter/pushTWData");
 	         
 	        postRequest.addHeader("content-type", "application/json");
 	       // StringEntity params =new StringEntity(obj.toString());
