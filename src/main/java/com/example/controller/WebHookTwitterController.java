@@ -74,13 +74,13 @@ public class WebHookTwitterController {
 	}
 	
 	@PostMapping("webhook")
-	public ResponseEntity getVerifyToken(@RequestBody Object obj) throws Exception {
+	public ResponseEntity getVerifyToken(HttpServletRequest request,@RequestBody Object obj) throws Exception {
 		
       System.out.println(" getVerifyToken(-,-) ");
       System.out.println(obj.toString());
 		
 		try{
-			
+		System.out.println("response_token getVerifyToken "+request.getAttribute("response_token"));	
 			Gson gson = new Gson(); 
 			System.out.println("gson.toJson(obj : "+ gson.toJson(obj));
 	        String json = gson.toJson(obj); 
@@ -99,7 +99,7 @@ public class WebHookTwitterController {
 	public static void demoPostRESTAPI(Object obj) throws Exception{
 	    DefaultHttpClient httpClient = new DefaultHttpClient();
 	    try {
-	        HttpPost postRequest = new HttpPost("http://60.254.111.202:28088/ticketManagement/unauthorize/pushTWData");
+	        HttpPost postRequest = new HttpPost("http://60.254.111.202/ticketManagement/unauthorize/pushTWData");
 	         
 	        postRequest.addHeader("content-type", "application/json");
 	       // StringEntity params =new StringEntity(obj.toString());
