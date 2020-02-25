@@ -158,7 +158,19 @@ public class WebHookTwitterController {
 	            throw new RuntimeException("Failed with HTTP error code : " + statusCode);
 	        }
 	        System.out.println("statusCode::"+statusCode);
-	    }
+	    }	/*
+	 * @Override public void callbackDenied(HttpServletRequest request,
+	 * HttpServletResponse response, String token) { log.
+	 * trace("Inside @class TWLoginServiceImpl @method callbackDenied token {} ",
+	 * token); try { String redirctUrl =
+	 * request.getSession().getAttribute("integrationUrl").toString();
+	 * log.info("callbackDenied  redirctUrl : {}", redirctUrl);
+	 * response.sendRedirect(redirctUrl); } catch (Exception e) {
+	 * log.error("Exception @class TWLoginServiceImpl @method callbackDenied  {}" ,
+	 * e); }
+	 * 
+	 * }
+	 */
 	    finally{
 	        httpClient.getConnectionManager().shutdown();
 	    }
