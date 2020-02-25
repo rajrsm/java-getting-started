@@ -112,7 +112,7 @@ public class WebHookTwitterController {
 	    SecretKeySpec secretKey = new SecretKeySpec(consumer_secret.getBytes(StandardCharsets.UTF_8), "HmacSHA256");
 	    sha256HMAC.init(secretKey);
 	     body=getRequestBody(request);
-	    String digest = Base64.encodeBase64String(sha256HMAC.doFinal(body.getBytes(StandardCharsets.UTF_8)));
+	   String digest = "sha256="+Base64.encodeBase64String(sha256HMAC.doFinal(body.getBytes(StandardCharsets.UTF_8)));
 	    System.out.println("signature : "+signature);
 	    System.out.println("signature2 : "+signature2);
 	    System.out.println("digest : "+digest);
