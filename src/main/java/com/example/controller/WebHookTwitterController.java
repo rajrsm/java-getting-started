@@ -1,32 +1,39 @@
 package com.example.controller;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.io.BufferedReader;
+import java.nio.charset.StandardCharsets;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.codec.binary.Base64;
+import org.json.JSONObject;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import com.google.gson.Gson;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.ws.rs.Produces;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.commons.codec.binary.Base64;
 import org.json.JSONArray;
-import org.json.JSONObject;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 @RestController
@@ -82,7 +89,7 @@ public class WebHookTwitterController {
       System.out.println(obj.toString());
 		
 		try{
-		System.out.println("response_token getVerifyToken "+request.getAttribute("response_token"));	
+			System.out.println("isValidSignature : "+isValidSignature(request,res));
 			Gson gson = new Gson(); 
 			System.out.println("gson.toJson(obj : "+ gson.toJson(obj));
 	        String json = gson.toJson(obj); 
@@ -97,6 +104,40 @@ public class WebHookTwitterController {
 		}
 		
 	}
+	
+	private Boolean isValidSignature(HttpServletRequest request, HttpServletResponse res) throws NoSuchAlgorithmException, InvalidKeyException {
+		String consumer_secret = "H6hBy75bq1CO5CribSoO5pfzwIB2T9OXCz2Bd5AbStcgxlfT1o";
+		String signature = request.getHeader("X-Twitter-Webhooks-Signature");
+	    String body = ""; 
+	    Mac sha256HMAC = Mac.getInstance("HmacSHA256");
+	    SecretKeySpec secretKey = new SecretKeySpec(consumer_secret.getBytes(StandardCharsets.UTF_8), "HmacSHA256");
+	    sha256HMAC.init(secretKey);
+	     body=getRequestBody(request);
+	    String digest = Base64.encodeBase64String(sha256HMAC.doFinal(body.getBytes(StandardCharsets.UTF_8)));
+	    System.out.println("signature : "+signature);
+	    System.out.println("digest : "+digest);
+	    return (signature == digest); 
+	}
+	
+	private String getRequestBody(final HttpServletRequest request) {
+        final StringBuffer sb = new StringBuffer();
+        try (BufferedReader reader = request.getReader()) {
+            if (reader == null) {
+            	System.out.println("Request body could not be read because it's empty.");
+                return null;
+            }
+            String line;
+            while ((line = reader.readLine()) != null) {
+            	sb.append(line);
+            }
+            System.out.println("getRequestBody  "+ sb.toString());
+            return sb.toString();
+        } catch (final Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 	
 	public static void demoPostRESTAPI(Object obj) throws Exception{
 	    DefaultHttpClient httpClient = new DefaultHttpClient();
