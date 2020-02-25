@@ -85,10 +85,8 @@ public class WebHookTwitterController {
 	@PostMapping("webhook")
 	public ResponseEntity getVerifyToken(HttpServletRequest request,HttpServletResponse res,@RequestBody Object obj) throws Exception {
 		
-      System.out.println(" getVerifyToken(-,-) ");
-      System.out.println(obj.toString());
-		
-		try{
+      System.out.println("inside methode  twitter data");
+      try{
 			System.out.println("isValidSignature : "+isValidSignature(request,res));
 			Gson gson = new Gson(); 
 			System.out.println("gson.toJson(obj : "+ gson.toJson(obj));
@@ -105,7 +103,9 @@ public class WebHookTwitterController {
 		
 	}
 	
-	private Boolean isValidSignature(HttpServletRequest request, HttpServletResponse res) throws NoSuchAlgorithmException, InvalidKeyException {
+	private Boolean isValidSignature(HttpServletRequest request, HttpServletResponse res) {
+		System.out.println("inside methode isValidSignature : ");
+		try{
 		String consumer_secret = "H6hBy75bq1CO5CribSoO5pfzwIB2T9OXCz2Bd5AbStcgxlfT1o";
 		String signature = request.getHeader("X-Twitter-Webhooks-Signature");
 	    String body = ""; 
@@ -117,6 +117,10 @@ public class WebHookTwitterController {
 	    System.out.println("signature : "+signature);
 	    System.out.println("digest : "+digest);
 	    return (signature == digest); 
+	    }catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
 	private String getRequestBody(final HttpServletRequest request) {
