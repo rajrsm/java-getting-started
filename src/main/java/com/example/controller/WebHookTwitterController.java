@@ -90,6 +90,8 @@ public class WebHookTwitterController {
 	      		Gson gson = new Gson(); 
 	      		String json = gson.toJson(obj); 
 			System.out.println("before twitter obj : "+ json);
+	      		json=getRequestBody(request);
+	     		 System.out.println("request body before twitter obj : "+ json);
   			System.out.println("isValidSignature : "+isValidSignature(request,res));
   			System.out.println("after twitter obj : "+ json);
   	        	JSONObject jsonObject  =new JSONObject(json);
