@@ -97,7 +97,7 @@ public class WebHookTwitterController {
 	        System.out.println("isValidSignature : "+isValidSignature(request,res,json));
 	        JSONObject jsonObject  =new JSONObject(json);
 	        System.out.println("jsonObject : "+ jsonObject);
-			demoPostRESTAPI(obj);
+			//demoPostRESTAPI(obj);
 		        return new ResponseEntity(obj,HttpStatus.OK);
 		}catch(Exception e){
 			e.printStackTrace();
