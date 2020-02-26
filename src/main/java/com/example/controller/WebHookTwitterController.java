@@ -116,7 +116,7 @@ public class WebHookTwitterController {
 	    System.out.println("signature : "+signature);
 	    System.out.println("signature2 : "+signature2);
 	    System.out.println("digest : "+digest);
-	    return (signature == digest); 
+	    return digest.equals(signature);
 	}
 	
 	private String getRequestBody(final HttpServletRequest request) {
