@@ -87,12 +87,12 @@ public class WebHookTwitterController {
 		
       System.out.println("inside methode  twitter data");
       try{
-			System.out.println("before twitter obj : "+ obj);
+	      		Gson gson = new Gson(); 
+	      		String json = gson.toJson(obj); 
+			System.out.println("before twitter obj : "+ json);
   			System.out.println("isValidSignature : "+isValidSignature(request,res));
-  			Gson gson = new Gson(); 
-  			System.out.println("after twitter obj : "+ obj);
-  	        	String json = gson.toJson(obj); 
-  	       		JSONObject jsonObject  =new JSONObject(json);
+  			System.out.println("after twitter obj : "+ json);
+  	        	JSONObject jsonObject  =new JSONObject(json);
   	        	System.out.println("jsonObject : "+ jsonObject);
   			demoPostRESTAPI(obj);
 		        return new ResponseEntity(obj,HttpStatus.OK);
