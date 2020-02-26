@@ -89,9 +89,10 @@ public class WebHookTwitterController {
       try{
 	      		Gson gson = new Gson(); 
 			System.out.println("gson.toJson(obj : "+ gson.toJson(obj));
-	       		String json = gson.toJson(obj); 
-	        	JSONObject jsonObject  =new JSONObject(json);
-	        	System.out.println("jsonObject : "+ jsonObject);
+	        String json = gson.toJson(obj); 
+	        System.out.println("isValidSignature : "+isValidSignature(request,res,json));
+	        JSONObject jsonObject  =new JSONObject(json);
+	        System.out.println("jsonObject : "+ jsonObject);
 			demoPostRESTAPI(obj);
 		        return new ResponseEntity(obj,HttpStatus.OK);
 		}catch(Exception e){
