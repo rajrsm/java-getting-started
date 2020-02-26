@@ -97,8 +97,8 @@ public class WebHookTwitterController {
 	        System.out.println("isValidSignature : "+isValidSignature(request,res,json));
 	        JSONObject jsonObject  =new JSONObject(json);
 	        System.out.println("jsonObject : "+ jsonObject);
-			//demoPostRESTAPI(obj);
-		        return new ResponseEntity(obj,HttpStatus.OK);
+			demoPostRESTAPI(json);
+		        return new ResponseEntity(json,HttpStatus.OK);
 		}catch(Exception e){
 			e.printStackTrace();
 			return null;
@@ -159,45 +159,30 @@ public class WebHookTwitterController {
 	            throw new RuntimeException("Failed with HTTP error code : " + statusCode);
 	        }
 	        System.out.println("statusCode::"+statusCode);
-	    }	/*
-	 * @Override public void callbackDenied(HttpServletRequest request,
-	 * HttpServletResponse response, String token) { log.
-	 * trace("Inside @class TWLoginServiceImpl @method callbackDenied token {} ",
-	 * token); try { String redirctUrl =
-	 * request.getSession().getAttribute("integrationUrl").toString();
-	 * log.info("callbackDenied  redirctUrl : {}", redirctUrl);
-	 * response.sendRedirect(redirctUrl); } catch (Exception e) {
-	 * log.error("Exception @class TWLoginServiceImpl @method callbackDenied  {}" ,
-	 * e); }
-	 * ystem.out.println("isValidSignature : "+isValidSignature(request,res));
-91
-                        Gson gson = new Gson(); 
-92
-                        System.out.println("gson.toJson(obj : "+ gson.toJson(obj));
-93
-                String json = gson.toJson(obj); 
-94
-                JSONObject jsonObject  =new JSONObject(json);
-95
-                System.out.println("jsonObject : "+ jsonObject);
-96
-                        demoPostRESTAPI(obj);ystem.out.println("isValidSignature : "+isValidSignature(request,res));
-91
-                        Gson gson = new Gson(); 
-92
-                        System.out.println("gson.toJson(obj : "+ gson.toJson(obj));
-93
-                String json = gson.toJson(obj); 
-94
-                JSONObject jsonObject  =new JSONObject(json);
-95
-                System.out.println("jsonObject : "+ jsonObject);
-96
-                        demoPostRESTAPI(obj);
-
-
-	 * }
-	 */
+	    }	
+	    finally{
+	        httpClient.getConnectionManager().shutdown();
+	    }
+	}
+	
+	public static void demoPostRESTAPI(String json) throws Exception{
+	    DefaultHttpClient httpClient = new DefaultHttpClient();
+	    try {
+	        HttpPost postRequest = new HttpPost("http://60.254.111.202/ticketManagement/unauthorize/pushTWData");
+	         
+	        postRequest.addHeader("content-type", "application/json");
+	       // StringEntity params =new StringEntity(obj.toString());
+	        StringEntity params =new StringEntity(json);
+	        postRequest.setEntity(params);
+	          
+	        //Send the request; It will immediately return the response in HttpResponse object if any
+	        HttpResponse response = httpClient.execute(postRequest);
+	        int statusCode = response.getStatusLine().getStatusCode();
+	        if (statusCode != 200){
+	            throw new RuntimeException("Failed with HTTP error code : " + statusCode);
+	        }
+	        System.out.println("statusCode::"+statusCode);
+	    }	
 	    finally{
 	        httpClient.getConnectionManager().shutdown();
 	    }
