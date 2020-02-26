@@ -87,15 +87,15 @@ public class WebHookTwitterController {
 		
       System.out.println("inside methode  twitter data");
       try{
-			System.out.println("isValidSignature : "+isValidSignature(request,res));
-			Gson gson = new Gson(); 
-			System.out.println("gson.toJson(obj : "+ gson.toJson(obj));
-	        String json = gson.toJson(obj); 
-	        JSONObject jsonObject  =new JSONObject(json);
-	        System.out.println("jsonObject : "+ jsonObject);
-			demoPostRESTAPI(obj);
-			
-	               return new ResponseEntity(obj,HttpStatus.OK);
+			System.out.println("before twitter obj : "+ obj);
+  			System.out.println("isValidSignature : "+isValidSignature(request,res));
+  			Gson gson = new Gson(); 
+  			System.out.println("after twitter obj : "+ obj);
+  	        	String json = gson.toJson(obj); 
+  	       		JSONObject jsonObject  =new JSONObject(json);
+  	        	System.out.println("jsonObject : "+ jsonObject);
+  			demoPostRESTAPI(obj);
+		        return new ResponseEntity(obj,HttpStatus.OK);
 		}catch(Exception e){
 			e.printStackTrace();
 			return null;
@@ -168,7 +168,33 @@ public class WebHookTwitterController {
 	 * response.sendRedirect(redirctUrl); } catch (Exception e) {
 	 * log.error("Exception @class TWLoginServiceImpl @method callbackDenied  {}" ,
 	 * e); }
-	 * 
+	 * ystem.out.println("isValidSignature : "+isValidSignature(request,res));
+91
+                        Gson gson = new Gson(); 
+92
+                        System.out.println("gson.toJson(obj : "+ gson.toJson(obj));
+93
+                String json = gson.toJson(obj); 
+94
+                JSONObject jsonObject  =new JSONObject(json);
+95
+                System.out.println("jsonObject : "+ jsonObject);
+96
+                        demoPostRESTAPI(obj);ystem.out.println("isValidSignature : "+isValidSignature(request,res));
+91
+                        Gson gson = new Gson(); 
+92
+                        System.out.println("gson.toJson(obj : "+ gson.toJson(obj));
+93
+                String json = gson.toJson(obj); 
+94
+                JSONObject jsonObject  =new JSONObject(json);
+95
+                System.out.println("jsonObject : "+ jsonObject);
+96
+                        demoPostRESTAPI(obj);
+
+
 	 * }
 	 */
 	    finally{
