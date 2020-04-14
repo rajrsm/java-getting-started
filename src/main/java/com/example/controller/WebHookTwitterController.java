@@ -99,7 +99,7 @@ public class WebHookTwitterController {
 	        //JSONObject jsonObject  =new JSONObject(json);
 	        //System.out.println("jsonObject : "+ jsonObject);
 			demoPostRESTAPI(obj);
-		        return new ResponseEntity(json,HttpStatus.OK);
+		        return new ResponseEntity(obj,HttpStatus.OK);
 		}catch(Exception e){
 			e.printStackTrace();
 			return null;
