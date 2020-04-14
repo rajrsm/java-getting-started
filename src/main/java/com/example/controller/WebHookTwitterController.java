@@ -83,7 +83,7 @@ public class WebHookTwitterController {
 	}
 	
 	@PostMapping("webhook")
-	getWebHookData(@RequestBody Object obj) throws Exception {
+	public ResponseEntity getWebHookData(@RequestBody Object obj) throws Exception {
 	//public ResponseEntity getVerifyToken(HttpServletRequest request,HttpServletResponse res) throws Exception {
 		
       System.out.println("inside methode  twitter data");
