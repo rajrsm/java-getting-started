@@ -83,7 +83,8 @@ public class WebHookTwitterController {
 	}
 	
 	@PostMapping("webhook")
-	public ResponseEntity getVerifyToken(HttpServletRequest request,HttpServletResponse res) throws Exception {
+	getWebHookData(@RequestBody Object obj) throws Exception {
+	//public ResponseEntity getVerifyToken(HttpServletRequest request,HttpServletResponse res) throws Exception {
 		
       System.out.println("inside methode  twitter data");
       try{
@@ -92,12 +93,12 @@ public class WebHookTwitterController {
 		 * gson.toJson(obj));
 		
 	        String json = gson.toJson(obj);  */
-	      	String json=getRequestBody(request);
-	      	System.out.println("getRequestBody json : "+ json);
-	        System.out.println("isValidSignature : "+isValidSignature(request,res,json));
-	        JSONObject jsonObject  =new JSONObject(json);
-	        System.out.println("jsonObject : "+ jsonObject);
-			demoPostRESTAPI(json);
+	  //    	String json=getRequestBody(request);
+	    //  	System.out.println("getRequestBody json : "+ json);
+	      //  System.out.println("isValidSignature : "+isValidSignature(request,res,json));
+	        //JSONObject jsonObject  =new JSONObject(json);
+	        //System.out.println("jsonObject : "+ jsonObject);
+			demoPostRESTAPI(obj);
 		        return new ResponseEntity(json,HttpStatus.OK);
 		}catch(Exception e){
 			e.printStackTrace();
