@@ -50,7 +50,7 @@ public class WebHookTwitterController {
 		System.out.println("inside methode token :  "+token);
 		
 		try {
-		     String consumer_secret = "e2BXkESNYy5SoNfWPRoJGoZQs";
+		     String consumer_secret = "o4sYNist4P1aQAIVAETuqguj0eYRQ4hszMnRNp7C8LyE66RCdC";
 		     System.out.println("token :  "+token);
 		     String crc_token = token;
 		     Mac sha256_HMAC = Mac.getInstance("HmacSHA256");
@@ -107,7 +107,7 @@ public class WebHookTwitterController {
 	}
 	
 	private Boolean isValidSignature(HttpServletRequest request, HttpServletResponse res,String body) throws NoSuchAlgorithmException, InvalidKeyException {
-		String consumer_secret = "e2BXkESNYy5SoNfWPRoJGoZQs";
+		String consumer_secret = "o4sYNist4P1aQAIVAETuqguj0eYRQ4hszMnRNp7C8LyE66RCdC";
 		String signature = request.getHeader("X-Twitter-Webhooks-Signature");
 		String signature2 = request.getHeader("x-twitter-webhooks-signature");
 		Mac sha256HMAC = Mac.getInstance("HmacSHA256");
