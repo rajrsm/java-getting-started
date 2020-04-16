@@ -88,9 +88,8 @@ public class WebHookTwitterController {
 		
       System.out.println("inside methode  twitter data");
       try{
-	      		/*
-		 * Gson gson = new Gson(); System.out.println("gson.toJson(obj : "+
-		 * gson.toJson(obj));*/
+	      
+		 Gson gson = new Gson();
 		
 	        String json = gson.toJson(obj);
 	  //    	String json=getRequestBody(request);
